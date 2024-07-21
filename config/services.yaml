@@ -48,3 +48,19 @@ services:
     SpecShaper\EncryptBundle\Command\GenKeyCommand:
         tags:
             -  { name: console.command }
+
+    # abc
+    SpecShaper\EncryptBundle\EventListener\DoctrineEncryptListener:
+        class: '%spec_shaper_encrypt.listener_class%'
+        arguments:
+            $annotationArray: '%spec_shaper_encrypt.annotation_classes%'
+            $isDisabled: '%spec_shaper_encrypt.is_disabled%'
+        tags:
+            - { name: doctrine.event_listener, connection: default }
+
+    # abc
+    SpecShaper\EncryptBundle\EventListener\EncryptEventListener:
+        arguments:
+            $isDisabled: '%spec_shaper_encrypt.is_disabled%'
+        tags:
+            - { name: kernel.event_listener, connection: default }
