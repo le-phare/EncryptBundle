@@ -43,14 +43,14 @@ class SpecShaperEncryptExtension extends Extension
         $doctrineListener = new Definition($config['listener_class']);
         $doctrineListener
             ->setAutowired(true)
-            ->setArgument(3, $config['annotation_classes'])
-            ->setArgument(4, $config['is_disabled'])
+            ->setArgument('annotationArray', $config['annotation_classes'])
+            ->setArgument('isDisabled', $config['is_disabled'])
         ;
 
         $encryptEventListener = new Definition(EncryptEventListener::class);
         $encryptEventListener
             ->setAutowired(true)
-            ->setArgument(1, $config['is_disabled'])
+            ->setArgument('isDisabled', $config['is_disabled'])
         ;
 
         foreach ($config['connections'] as $connectionName) {
